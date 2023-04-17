@@ -4,6 +4,7 @@ import MovieList from 'components/TrendingMovies/MovieList';
 import { useEffect, useState } from 'react';
 import { getMovies } from 'services/movies-api';
 import NotFoundView from 'ui/NotFoundView';
+import { Outlet } from "react-router-dom"
 
 export default function GetTrendingMovies() {
     const [movies, setMovies] = useState([]);
@@ -35,6 +36,7 @@ export default function GetTrendingMovies() {
             {isNotFound && <NotFoundView />}
             {error && <div>{error}</div>}
             {movies && <MovieList movies={movies} />}
+            <Outlet />
         </Container>
         </>
     );
