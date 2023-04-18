@@ -1,7 +1,7 @@
 import Container from 'components/Container/Container';
 import PageHeading from 'components/Pageheading/Pageheading';
 import MovieList from 'components/TrendingMovies/MovieList';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { getMovies } from 'services/movies-api';
 import NotFoundView from 'ui/NotFoundView';
 import { Outlet } from "react-router-dom"
@@ -36,7 +36,9 @@ export default function GetTrendingMovies() {
             {isNotFound && <NotFoundView />}
             {error && <div>{error}</div>}
             {movies && <MovieList movies={movies} />}
-            <Outlet />
+            <Suspense>
+                <Outlet />
+            </Suspense>
         </Container>
         </>
     );
